@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+    
+`;
 
 const SubscribeForm = () => {
 
@@ -48,38 +53,40 @@ const SubscribeForm = () => {
         console.log('sending: ', sending),
         console.log('submission: ', submission),
         console.log('message: ', message),
-        <form onSubmit={handleSubmit}>
-            <input 
-                type="text" 
-                name="firstname" 
-                onChange={e => {setFirstname(e.target.value)}}
-                required
-            />
-            <input 
-                type="text" 
-                name="surnamname" 
-                onChange={e => {setSurname(e.target.value)}}
-                required
+        <Wrapper>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    type="text" 
+                    name="firstname" 
+                    onChange={e => {setFirstname(e.target.value)}}
+                    required
                 />
-            <input 
-                type="email" 
-                name="email" 
-                onChange={e => {setEmail(e.target.value)}} 
-                required
-            />
-            <input 
-                type="tel"
-                name="phone" 
-                onChange={e => {setPhone(e.target.value)}}
-                required
-                maxLength="13"
-                minLength="10"
-            />
-            <input 
-                type="submit" 
-                value="Subscribe" 
-            /> 
-        </form> 
+                <input 
+                    type="text" 
+                    name="surnamname" 
+                    onChange={e => {setSurname(e.target.value)}}
+                    required
+                    />
+                <input 
+                    type="email" 
+                    name="email" 
+                    onChange={e => {setEmail(e.target.value)}} 
+                    required
+                />
+                <input 
+                    type="tel"
+                    name="phone" 
+                    onChange={e => {setPhone(e.target.value)}}
+                    required
+                    maxLength="13"
+                    minLength="10"
+                />
+                <input 
+                    type="submit" 
+                    value="Subscribe" 
+                /> 
+            </form>
+        </Wrapper>
         )
     }
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 
-import SubscribeForm from './components/SubscribeForm';
+import Form from './components/Form';
+import Header from './components/Header';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
-        <SubscribeForm />
+        <Header />
+        <Form />
     </div>
   );
 }
