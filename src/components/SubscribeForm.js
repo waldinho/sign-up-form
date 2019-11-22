@@ -10,19 +10,6 @@ const SubscribeForm = () => {
     const [submission, setSubmission] = useState()
     const [message, setMessage] = useState()
 
-    const handleFirstnameChange = event => {
-        setFirstname(event.target.value)
-    }
-    const handleSurnameChange = event => {
-        setSurname(event.target.value)
-    }
-    const handleEmailChange = event => {
-        setEmail(event.target.value)
-    }
-    const handlePhoneChange = event => {
-        setPhone(event.target.value)
-    }
-    
     const handleSubmit = event =>{
         event.preventDefault();
         setSending(true)
@@ -36,8 +23,8 @@ const SubscribeForm = () => {
             }
         }
         fetch(url, { 
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(data), // data can be `string` or {object}!
+            method: 'POST',
+            body: JSON.stringify(data),
             headers:{ 
                 'Content-Type': 'application/json',
                 'x-auth': 'react-test' 
@@ -61,11 +48,11 @@ const SubscribeForm = () => {
         console.log('submission: ', submission),
         console.log('message: ', message),
         <form onSubmit={handleSubmit}>
-            <input type="text" name="firstname" onChange={handleFirstnameChange} />
-            <input type="text" name="surnamname" onChange={handleSurnameChange} />
-            <input type="email" name="email" onChange={handleEmailChange} />
-            <input type="number" name="phone" onChange={handlePhoneChange} />
-            <input type="submit" value="Add user" /> 
+            <input type="text" name="firstname" onChange={e => {setFirstname(e.target.value)}} />
+            <input type="text" name="surnamname" onChange={e => {setSurname(e.target.value)}} />
+            <input type="email" name="email" onChange={e => {setEmail(e.target.value)}} />
+            <input type="number" name="phone" onChange={e => {setPhone(e.target.value)}}/>
+            <input type="submit" value="Subscribe" /> 
         </form> 
         )
     }
