@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
-    
-`;
-
 const SubscribeForm = () => {
-
+    
     const [firstname, setFirstname] = useState()
     const [surname, setSurname] = useState()
     const [email, setEmail] = useState()
     const [phone, setPhone] = useState()
-    const [sending, setSending] = useState(false)
     const [submission, setSubmission] = useState()
     const [message, setMessage] = useState()
 
 
-    const handleSubmit = e =>{
-        e.preventDefault();
-        setSending(true)
+    const handleSubmit = e => {
+        e.preventDefault()
         const url ='https://ckzvgrbymezqegu.form.io/reacttestform/submission'
         const data = { 
             data: {
@@ -38,57 +32,149 @@ const SubscribeForm = () => {
         })
         .then(res => res.json())
         .catch(error => console.error('Error:', error),
-            setSending(false),
             setSubmission(false),
             setMessage('Oops something went wrong...'),
         )
         .then(response => console.log('Success:', response),
-            setSending(false),
             setSubmission(true),
             setMessage('Thank you for subscribing!'),
         )
     }
 
     return (
-        console.log('sending: ', sending),
-        console.log('submission: ', submission),
-        console.log('message: ', message),
         <Wrapper>
+            {submission 
+            ? 
+            <div className='thank__you'>
+                <p>{message}</p>
+            </div>
+            :
             <form onSubmit={handleSubmit}>
+                <div className='row'>
+                    <div className='left'>
+                        <label>First name: *</label>
+                        <input 
+                            type="text" 
+                            name="firstname" 
+                            onChange={e => {setFirstname(e.target.value)}}
+                            required
+                        />
+                    </div>
+                    <div className='right'>
+                        <label>Last name: *</label>
+                        <input 
+                            type="text" 
+                            name="surnamname" 
+                            onChange={e => {setSurname(e.target.value)}}
+                            required
+                        />
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='left'>
+                        <label>Email: *</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            onChange={e => {setEmail(e.target.value)}} 
+                            required
+                        />
+                    </div>
+                    <div className='right'>
+                        <label>Mobile phone: </label>
+                        <input 
+                            type="tel"
+                            name="phone" 
+                            onChange={e => {setPhone(e.target.value)}}
+                            maxLength="13"
+                            minLength="10"
+                        />
+                    </div>
+                </div>
                 <input 
-                    type="text" 
-                    name="firstname" 
-                    onChange={e => {setFirstname(e.target.value)}}
-                    required
-                />
-                <input 
-                    type="text" 
-                    name="surnamname" 
-                    onChange={e => {setSurname(e.target.value)}}
-                    required
-                    />
-                <input 
-                    type="email" 
-                    name="email" 
-                    onChange={e => {setEmail(e.target.value)}} 
-                    required
-                />
-                <input 
-                    type="tel"
-                    name="phone" 
-                    onChange={e => {setPhone(e.target.value)}}
-                    required
-                    maxLength="13"
-                    minLength="10"
-                />
-                <input 
+                    className='submit'
                     type="submit" 
-                    value="Subscribe" 
+                    value="Submit" 
                 /> 
             </form>
+            }
         </Wrapper>
-        )
+    )
+}
+    
+const Wrapper = styled.div`
+    position: relative;
+    top: 26vh;
+    @media screen and (min-width: 600px) {
+        top: 30vh;
     }
-
+    color: #fff;
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    .thank__you {
+        position: relative;
+        top: 10vh;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        .row {
+            display: flex;
+            flex-direction: column;
+            @media screen and (min-width: 600px) {
+                flex-direction: row;
+            }
+            .left {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+            .right {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+            input {
+                border: 2px solid #dadada;
+                box-sizing: border-box;
+                color: #323232;
+                font-size: 18px;
+                height: 48px;
+                line-height: 25.5px;
+                padding: 10.5px 14px 14px 14px;
+                font-family: 'Muli', sans-serif;
+                margin: 1rem 0.75rem 0 1rem;
+                @media screen and (min-width: 321px) {
+                    margin: 1rem;
+                }
+                min-width: 300px;
+            }
+            label {
+                min-width: 300px;
+                padding: 10.5px 14px 0 14px;
+            }
+        }
+        input.submit {
+            background: #333;
+            color: #fff;
+            border: 2px solid #dadada;
+            box-sizing: border-box;
+            font-size: 18px;
+            height: 48px;
+            line-height: 25.5px;
+            font-family: 'Muli', sans-serif;
+            margin: 2.5rem 0.75rem 0 1rem;
+            @media screen and (min-width: 321px) {
+                margin: 2.5rem 1rem;
+            }
+            @media screen and (min-width: 600px) {
+                width: 150px;
+            }
+        }
+    }
+`
 
 export default SubscribeForm
