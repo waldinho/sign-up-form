@@ -13,9 +13,9 @@ describe('<Header /> with no props', () => {
     const container = shallow(<Header />);
     it('should match the snapshot', () => {
       expect(container.html()).toMatchSnapshot();
-      expect(container.find("img").prop("src")).toEqual('https://www.southerncrossaustereo.com.au:443/media/1973/logo-sca.svg');
-      expect(container.find("img").prop("alt")).toEqual('SCA');
-      expect(container.find("img").prop("title")).toEqual('SCA');
-      expect(container.find("img").prop("className")).toEqual('logo');
+      expect(container.find('img').prop('src')).toEqual('https://www.southerncrossaustereo.com.au:443/media/1973/logo-sca.svg');
+      expect(container.find('img').prop('alt')).toEqual('SCA');
+      expect(container.find('img').prop('title')).toEqual('SCA');
+      expect(container.find('img').prop('className')).toEqual('logo');
     })
 })

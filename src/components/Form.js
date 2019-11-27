@@ -46,7 +46,7 @@ const SubscribeForm = () => {
             {submission 
             ? 
             <div className='thank__you'>
-                <p>{message}</p>
+                <p aria-label={message}>{message}</p>
             </div>
             :
             <form onSubmit={handleSubmit}>
